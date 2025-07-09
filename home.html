@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Music Player</title>
+    <style>
+        /* This is some basic CSS to make it look a little nicer */
+        body { font-family: sans-serif; background-color: #222; color: #fff; }
+        h1, h2 { border-bottom: 2px solid #444; padding-bottom: 10px; }
+        #songList li { 
+            cursor: pointer; /* Makes it look clickable */
+            padding: 10px; 
+            list-style: none; /* Removes bullet points */
+            border-bottom: 1px solid #333;
+        }
+        #songList li:hover { background-color: #555; }
+    </style>
+</head>
+<body>
+
+    <h1>My Music Player 🎧</h1>
+    <audio controls id="audioPlayer" style="width: 100%;"></audio>
+
+    <h2>Song List</h2>
+    <ul id="songList">
+        </ul>
+
+    <script>
+        // --- This is the JavaScript part ---
+
+        // 1. Define your list of songs
+        const mySongs = [
+            {
+                name: "Sweet / I thought you wanted to dance - Tyler The Creator",
+                path: "music/tyler the creator.mp3" // IMPORTANT: Path to your first song
+            },
+            {
+                name: "Cigarettes out the window - TV Girl",
+                path: "music/cigars out the window.mp3" // IMPORTANT: Path to your second song
+            },
+            {
+                name: "Illegal - PinkPantheress",
+                path: "music/illegal.mp3" // Add as many as you want
+            }
+        ];
+
+        // 2. Get the elements from the HTML
+        const audioPlayer = document.getElementById('audioPlayer');
+        const songList = document.getElementById('songList');
+
+        // 3. Create the list of songs on the page
+        mySongs.forEach((song, index) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = song.name;
+            
+            // Add a click event to each list item
+            listItem.addEventListener('click', () => {
+                playSong(song.path);
+            });
+
+            songList.appendChild(listItem);
+        });
+
+        // 4. Function to change the song and play it
+        function playSong(songPath) {
+            audioPlayer.src = songPath;
+            audioPlayer.play();
+        }
+
+    </script>
+
+</body>
+</html>
